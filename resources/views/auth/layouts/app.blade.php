@@ -31,7 +31,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="/home"><b>Admin</b>LTE</a>
+            <a href="{{ route('home') }}"><b>Admin</b>LTE</a>
         </div>
         <div class="card">
             @yield('content')

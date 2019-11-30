@@ -9,49 +9,52 @@
             @csrf
 
             <div class="input-group mb-3">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                    value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Full Name">
+                <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror"
+                    name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus
+                    placeholder="Username">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-user"></span>
                     </div>
                 </div>
-                @error('name')
+                @error('user_name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
             <div class="input-group mb-3">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                    value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address">
+                <input id="user_email" type="email" class="form-control @error('user_email') is-invalid @enderror"
+                    name="user_email" value="{{ old('user_email') }}" required autocomplete="user_email"
+                    placeholder="Email Address">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
                     </div>
                 </div>
-                @error('email')
+                @error('user_email')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
             <div class="input-group mb-3">
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                    name="password" required autocomplete="new-password" placeholder="Password">
+                <input id="user_pass" type="password" class="form-control @error('user_pass') is-invalid @enderror"
+                    name="user_pass" required autocomplete="new-password" placeholder="Password">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-lock"></span>
                     </div>
                 </div>
-                @error('password')
+                @error('user_pass')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
-            <div class="input-group mb-3"><input id="password-confirm" type="password" class="form-control"
-                    name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+            <div class="input-group mb-3">
+                <input id="user_pass-confirm" type="password" class="form-control" name="user_pass_confirmation"
+                    required autocomplete="new-user_pass" placeholder="Confirm Password">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-lock"></span>
@@ -61,7 +64,7 @@
             <div class="row">
                 <div class="col-8">
                     <div class="icheck-primary">
-                        <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                        <input type="checkbox" id="terms" name="terms" value="agree" {{ old('terms') ? 'checked' : '' }} required>
                         <label for="agreeTerms">
                             I agree to the <a href="#">terms</a>
                         </label>

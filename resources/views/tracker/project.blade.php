@@ -24,34 +24,34 @@
           <div class="col-12 col-sm-4">
             <div class="info-box bg-light">
               <div class="info-box-content">
-                <span class="info-box-text text-center text-muted">Estimated budget</span>
-                <span class="info-box-number text-center text-muted mb-0">2300</span>
+                <span class="info-box-text text-center text-muted">Open Issues</span>
+                <span class="info-box-number text-center text-muted mb-0">0</span>
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-4">
             <div class="info-box bg-light">
               <div class="info-box-content">
-                <span class="info-box-text text-center text-muted">Total amount spent</span>
-                <span class="info-box-number text-center text-muted mb-0">2000</span>
+                <span class="info-box-text text-center text-muted">Closed Issues</span>
+                <span class="info-box-number text-center text-muted mb-0">0</span>
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-4">
             <div class="info-box bg-light">
               <div class="info-box-content">
-                <span class="info-box-text text-center text-muted">Estimated project duration</span>
-                <span class="info-box-number text-center text-muted mb-0">20 <span>
+                <span class="info-box-text text-center text-muted">Total Issues</span>
+                <span class="info-box-number text-center text-muted mb-0">0 <span>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <h4>Recent Activity</h4>
+            <h4>Issues</h4>
               <div class="post">
                 <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                  <img class="img-circle img-bordered-sm" src="{{asset('assets/dist/img/user1-128x128.jpg')}}" alt="user image">
                   <span class="username">
                     <a href="#">Jonathan Burke Jr.</a>
                   </span>
@@ -71,7 +71,7 @@
 
               <div class="post clearfix">
                 <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                  <img class="img-circle img-bordered-sm" src="{{asset('assets/dist/img/user7-128x128.jpg')}}" alt="User Image">
                   <span class="username">
                     <a href="#">Sarah Ross</a>
                   </span>
@@ -90,7 +90,7 @@
 
               <div class="post">
                 <div class="user-block">
-                  <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                  <img class="img-circle img-bordered-sm" src="{{asset('assets/dist/img/user1-128x128.jpg')}}" alt="user image">
                   <span class="username">
                     <a href="#">Jonathan Burke Jr.</a>
                   </span>
@@ -111,7 +111,7 @@
         </div>
       </div>
       <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
-        <h3 class="text-primary"><i class="fas fa-paint-brush"></i> AdminLTE v3</h3>
+        <h3 class="text-primary"><i class="fas fa-paint-brush"></i> project_tracker</h3>
         <p class="text-muted">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
         <br>
         <div class="text-muted">

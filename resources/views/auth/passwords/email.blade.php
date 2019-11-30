@@ -8,14 +8,14 @@
         @csrf
 
         <div class="input-group mb-3">
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email Address">
+            <input id="user_email" type="email" class="form-control @error('user_email') is-invalid @enderror" name="user_email"
+                value="{{ old('user_email') }}" required autocomplete="user_email" autofocus placeholder="Email Address">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
                 </div>
             </div>
-            @error('email')
+            @error('user_email')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
