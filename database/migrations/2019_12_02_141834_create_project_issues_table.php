@@ -20,7 +20,7 @@ class CreateProjectIssuesTable extends Migration
             $table->bigInteger('issue_project')->unsigned();
             $table->boolean('issue_status')->default(1);
             // maximum level priority 3
-            $table->tinyint('issue_priority')->default(0);
+            $table->tinyInteger('issue_priority')->default(0);
             $table->timestamp('issue_date')->useCurrent();
             $table->timestamp('issue_dateupdated')->nullable();
             $table->timestamp('issue_dateclosed')->nullable();
