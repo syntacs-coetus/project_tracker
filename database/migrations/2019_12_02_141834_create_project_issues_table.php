@@ -17,9 +17,10 @@ class CreateProjectIssuesTable extends Migration
             $table->Increments('issue_id');
             $table->string('issue_title');
             $table->text('issue_desc');
-            $table->bigInteger('issue_project')->unsigned();;
-            $table->Integer('issued_by')->unsigned();
+            $table->bigInteger('issue_project')->unsigned();
             $table->boolean('issue_status')->default(1);
+            // maximum level priority 3
+            $table->tinyint('issue_priority')->default(0);
             $table->timestamp('issue_date')->useCurrent();
             $table->timestamp('issue_dateupdated')->nullable();
             $table->timestamp('issue_dateclosed')->nullable();
@@ -30,11 +31,6 @@ class CreateProjectIssuesTable extends Migration
             $table->foreign('issue_project')
             ->references('project_id')
             ->on('projects')
-            ->onUpdate('cascade')->onDelete('restrict');
-
-            $table->foreign('issued_by')
-            ->references('user_id')
-            ->on('user_accounts')
             ->onUpdate('cascade')->onDelete('restrict');
         });
     }
