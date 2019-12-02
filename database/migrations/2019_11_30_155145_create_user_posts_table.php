@@ -18,7 +18,7 @@ class CreateUserPostsTable extends Migration
             $table->text('post_description');
             $table->Integer('poster_id')->unsigned();
             $table->timestamp('date_posted')->useCurrent();
-            $table->timestamp('date_updated')->nullable();
+            $table->timestamp('date_updated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
