@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->boolean('user_admin_override')->default(0);
             $table->rememberToken();
             $table->timestamp('registered_date')->useCurrent();
-            $table->timestamp('last_loggedin')->nullable();
+            $table->timestamp('last_loggedin')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
