@@ -18,7 +18,7 @@ class CreateUpcVotesTable extends Migration
             $table->boolean('positive_vote')->default(1);
             $table->Integer('voter')->unsigned();
             $table->bigInteger('upc_id')->unsigned();
-            $table->timestamp('date_voted')->useCurrent();
+            $table->timestamp('date_voted');
         });
 
         Schema::table('upc_votes', function (Blueprint $table){
