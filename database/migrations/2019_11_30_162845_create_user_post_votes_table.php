@@ -18,7 +18,7 @@ class CreateUserPostVotesTable extends Migration
             $table->boolean('positive_vote');
             $table->Integer('voter');
             $table->bigInteger('up_id')->unsigned();
-            $table->timestamp('date_voted')->useCurrent();
+            $table->timestamp('date_voted');
         });
 
         Schema::table('user_post_votes', function (Blueprint $table){
