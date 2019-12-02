@@ -23,7 +23,7 @@ class CreateIssueVotesTable extends Migration
 
         Schema::table('issue_votes', function (Blueprint $table){
             $table->foreign('voter')
-            ->references('voter')
+            ->references('user_id')
             ->on('user_accounts')
             ->onUpdate('cascade')->onDelete('restrict');
 
