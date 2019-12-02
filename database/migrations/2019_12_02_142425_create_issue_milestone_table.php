@@ -19,7 +19,7 @@ class CreateIssueMilestoneTable extends Migration
             $table->Integer('issue_id')->unsigned();
         });
 
-        Schema::table('issue_milstone', function (Blueprint $table){
+        Schema::table('issue_milestone', function (Blueprint $table){
             $table->foreign('milestone_id')
             ->references('milestone_id')
             ->on('project_milestones')
