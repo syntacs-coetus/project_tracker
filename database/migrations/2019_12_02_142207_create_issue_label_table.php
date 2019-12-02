@@ -18,6 +18,8 @@ class CreateIssueLabelTable extends Migration
             $table->Integer('label_id')->unsigned();
             $table->Integer('issue_id')->unsigned();
             $table->boolean('label_istask')->default(0);
+            // 0 -> just list, 1 -> Default list, 2 -> Doing List, 3 -> End List
+            $table->tinyInteger('label_istasktype')->default(0);
         });
 
         Schema::table('issue_label', function (Blueprint $table){
