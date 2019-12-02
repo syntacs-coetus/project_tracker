@@ -19,7 +19,7 @@ class CreateUserPostCommentsTable extends Migration
             $table->Integer('upc_owner')->unsigned();
             $table->bigInteger('upc_target')->unsigned();
             $table->timestamp('upc_datecreated')->useCurrent();
-            $table->timestamp('upc_dateupdated')->nullable();
+            $table->timestamp('upc_dateupdated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
         Schema::table('user_post_comments', function (Blueprint $table){
