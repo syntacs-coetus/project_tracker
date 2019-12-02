@@ -19,8 +19,8 @@ class CreateUserNotificationsTable extends Migration
             $table->string('notif_link');
             $table->boolean('notif_read');
             $table->Integer('notif_owner')->unsigned();
-            $table->timestamp('notif_dateread')->nullable();
             $table->timestamp('notif_datecreated')->useCurrent();
+            $table->timestamp('notif_dateread')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
         Schema::table('user_notifications', function (Blueprint $table){
