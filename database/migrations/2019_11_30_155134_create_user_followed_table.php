@@ -19,7 +19,7 @@ class CreateUserFollowedTable extends Migration
             $table->Integer('follower_id')->unsigned();
             $table->Integer('followed_id')->unsigned();
             $table->timestamp('followed_date')->useCurrent();
-            $table->timestamp('unfollowed_date')->nullable();
+            $table->timestamp('unfollowed_date')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
 
         Schema::table('user_followed', function (Blueprint $table){
