@@ -29,14 +29,7 @@
 </head>
 
 <body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="{{ route('home') }}"><b>Admin</b>LTE</a>
-        </div>
-        <div class="card">
-            @yield('content')
-        </div>
-    </div>
+    @yield('content')
 </body>
 
 </html>
