@@ -1,16 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+/**
+ * --------------------------------------------------------------------------
+ *  Web Routes
+ * --------------------------------------------------------------------------
+ *
+ *  Here is where you can register web routes for your application. These
+ *  routes are loaded by the RouteServiceProvider within a group which
+ *  contains the "web" middleware group. Now create something great!
+ *
+ */
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -21,3 +20,5 @@ Route::get('/project', 'ProjectController@index')->name('project');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::get('/groups', 'GroupController@getGroups')->name('groups');
+
+Route::get('/insta', 'Auth\InstallationController@index')->name('insta');
