@@ -3,25 +3,29 @@
  *
  * List of supported emojis: https://github.com/showdownjs/showdown/wiki/Emojis
  */
-showdown.subParser('emoji', function (text, options, globals) {
-  'use strict';
+showdown.subParser(
+    'emoji', function (text, options, globals) {
+        'use strict';
 
-  if (!options.emoji) {
-    return text;
-  }
+        if (!options.emoji) {
+            return text;
+        }
 
-  text = globals.converter._dispatch('emoji.before', text, options, globals);
+        text = globals.converter._dispatch('emoji.before', text, options, globals);
 
-  var emojiRgx = /:([\S]+?):/g;
+        var emojiRgx = /:([\S]+?):/g;
 
-  text = text.replace(emojiRgx, function (wm, emojiCode) {
-    if (showdown.helper.emojis.hasOwnProperty(emojiCode)) {
-      return showdown.helper.emojis[emojiCode];
+        text = text.replace(
+            emojiRgx, function (wm, emojiCode) {
+                if (showdown.helper.emojis.hasOwnProperty(emojiCode)) {
+                    return showdown.helper.emojis[emojiCode];
+                }
+                return wm;
+            }
+        );
+
+        text = globals.converter._dispatch('emoji.after', text, options, globals);
+
+        return text;
     }
-    return wm;
-  });
-
-  text = globals.converter._dispatch('emoji.after', text, options, globals);
-
-  return text;
-});
+);

@@ -13,12 +13,14 @@ class CreateSystemLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('system_logs', function (Blueprint $table) {
-            $table->bigIncrements('log_id');
-            $table->tinyInteger('log_type');
-            $table->text('log_desc');
-            $table->timestamp('log_date')->useCurrent();
-        });
+        Schema::create(
+            'system_logs', function (Blueprint $table) {
+                $table->bigIncrements('log_id');
+                $table->tinyInteger('log_type');
+                $table->text('log_desc');
+                $table->timestamp('log_date')->useCurrent();
+            }
+        );
     }
 
     /**

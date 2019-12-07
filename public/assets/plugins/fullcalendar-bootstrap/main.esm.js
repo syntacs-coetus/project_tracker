@@ -22,22 +22,32 @@ and limitations under the License.
 ***************************************************************************** */
 /* global Reflect, Promise */
 
-var extendStatics = function(d, b) {
+var extendStatics = function (d, b) {
     extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        ({ __proto__: [] } instanceof Array && function (d, b) {
+            d.__proto__ = b; }) ||
+        function (d, b) {
+            for (var p in b) { if (b.hasOwnProperty(p)) { d[p] = b[p];
+            }
+            } };
     return extendStatics(d, b);
 };
 
-function __extends(d, b) {
+function __extends(d, b)
+{
     extendStatics(d, b);
-    function __() { this.constructor = d; }
+    function __()
+    {
+        this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 }
 
-var BootstrapTheme = /** @class */ (function (_super) {
+var BootstrapTheme = /**
+ * @class 
+*/ (function (_super) {
     __extends(BootstrapTheme, _super);
-    function BootstrapTheme() {
+    function BootstrapTheme()
+    {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return BootstrapTheme;
@@ -73,11 +83,13 @@ BootstrapTheme.prototype.iconClasses = {
 BootstrapTheme.prototype.iconOverrideOption = 'bootstrapFontAwesome';
 BootstrapTheme.prototype.iconOverrideCustomButtonOption = 'bootstrapFontAwesome';
 BootstrapTheme.prototype.iconOverridePrefix = 'fa-';
-var main = createPlugin({
-    themeClasses: {
-        bootstrap: BootstrapTheme
+var main = createPlugin(
+    {
+        themeClasses: {
+            bootstrap: BootstrapTheme
+        }
     }
-});
+);
 
 export default main;
 export { BootstrapTheme };

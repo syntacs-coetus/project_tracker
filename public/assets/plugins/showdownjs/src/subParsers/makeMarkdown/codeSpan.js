@@ -1,5 +1,7 @@
-showdown.subParser('makeMarkdown.codeSpan', function (node) {
-  'use strict';
+showdown.subParser(
+    'makeMarkdown.codeSpan', function (node) {
+        'use strict';
 
-  return '`' + node.innerHTML + '`';
-});
+        return '`' + node.innerHTML + '`';
+    }
+);

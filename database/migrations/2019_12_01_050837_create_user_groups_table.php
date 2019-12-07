@@ -13,13 +13,15 @@ class CreateUserGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_groups', function (Blueprint $table) {
-            $table->Increments('group_id');
-            $table->string('group_name', 65);
-            $table->string('group_shortname', 11);
-            $table->timestamp('date_groupcreated')->useCurrent();
-            $table->timestamp('date_groupupdated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-        });
+        Schema::create(
+            'user_groups', function (Blueprint $table) {
+                $table->Increments('group_id');
+                $table->string('group_name', 65);
+                $table->string('group_shortname', 11);
+                $table->timestamp('date_groupcreated')->useCurrent();
+                $table->timestamp('date_groupupdated')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            }
+        );
     }
 
     /**

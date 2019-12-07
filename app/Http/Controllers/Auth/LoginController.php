@@ -23,7 +23,8 @@ class LoginController extends Controller
 
     protected $username = 'user_name';
 
-    public function username(){
+    public function username()
+    {
         return $this->username;
     }
     

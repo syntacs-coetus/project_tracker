@@ -2,16 +2,18 @@ var root = this;
 
 // AMD Loader
 if (typeof define === 'function' && define.amd) {
-  define(function () {
-    'use strict';
-    return showdown;
-  });
+    define(
+        function () {
+            'use strict';
+            return showdown;
+        }
+    );
 
-// CommonJS/nodeJS Loader
+    // CommonJS/nodeJS Loader
 } else if (typeof module !== 'undefined' && module.exports) {
-  module.exports = showdown;
+    module.exports = showdown;
 
-// Regular Browser loader
+    // Regular Browser loader
 } else {
-  root.showdown = showdown;
+    root.showdown = showdown;
 }

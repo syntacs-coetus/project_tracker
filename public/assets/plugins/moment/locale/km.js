@@ -1,11 +1,12 @@
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-   typeof exports === 'object' && typeof module !== 'undefined'
+    typeof exports === 'object' && typeof module !== 'undefined'
        && typeof require === 'function' ? factory(require('../moment')) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+    factory(global.moment)
+}(this, (function (moment) {
+    'use strict';
 
 
     var symbolMap = {
@@ -32,10 +33,11 @@
         '០': '0'
     };
 
-    var km = moment.defineLocale('km', {
-        months: 'មករា_កុម្ភៈ_មីនា_មេសា_ឧសភា_មិថុនា_កក្កដា_សីហា_កញ្ញា_តុលា_វិច្ឆិកា_ធ្នូ'.split(
-            '_'
-        ),
+    var km = moment.defineLocale(
+        'km', {
+            months: 'មករា_កុម្ភៈ_មីនា_មេសា_ឧសភា_មិថុនា_កក្កដា_សីហា_កញ្ញា_តុលា_វិច្ឆិកា_ធ្នូ'.split(
+                '_'
+            ),
         monthsShort: 'មករា_កុម្ភៈ_មីនា_មេសា_ឧសភា_មិថុនា_កក្កដា_សីហា_កញ្ញា_តុលា_វិច្ឆិកា_ធ្នូ'.split(
             '_'
         ),
@@ -50,59 +52,64 @@
             LL: 'D MMMM YYYY',
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd, D MMMM YYYY HH:mm'
-        },
-        meridiemParse: /ព្រឹក|ល្ងាច/,
-        isPM: function (input) {
-            return input === 'ល្ងាច';
-        },
-        meridiem: function (hour, minute, isLower) {
-            if (hour < 12) {
-                return 'ព្រឹក';
-            } else {
-                return 'ល្ងាច';
+            },
+            meridiemParse: /ព្រឹក|ល្ងាច/,
+            isPM: function (input) {
+                return input === 'ល្ងាច';
+            },
+            meridiem: function (hour, minute, isLower) {
+                if (hour < 12) {
+                    return 'ព្រឹក';
+                } else {
+                    return 'ល្ងាច';
+                }
+            },
+            calendar: {
+                sameDay: '[ថ្ងៃនេះ ម៉ោង] LT',
+                nextDay: '[ស្អែក ម៉ោង] LT',
+                nextWeek: 'dddd [ម៉ោង] LT',
+                lastDay: '[ម្សិលមិញ ម៉ោង] LT',
+                lastWeek: 'dddd [សប្តាហ៍មុន] [ម៉ោង] LT',
+                sameElse: 'L'
+            },
+            relativeTime: {
+                future: '%sទៀត',
+                past: '%sមុន',
+                s: 'ប៉ុន្មានវិនាទី',
+                ss: '%d វិនាទី',
+                m: 'មួយនាទី',
+                mm: '%d នាទី',
+                h: 'មួយម៉ោង',
+                hh: '%d ម៉ោង',
+                d: 'មួយថ្ងៃ',
+                dd: '%d ថ្ងៃ',
+                M: 'មួយខែ',
+                MM: '%d ខែ',
+                y: 'មួយឆ្នាំ',
+                yy: '%d ឆ្នាំ'
+            },
+            dayOfMonthOrdinalParse : /ទី\d{1,2}/,
+            ordinal : 'ទី%d',
+            preparse: function (string) {
+                return string.replace(
+                    /[១២៣៤៥៦៧៨៩០]/g, function (match) {
+                        return numberMap[match];
+                    }
+                );
+            },
+            postformat: function (string) {
+                return string.replace(
+                    /\d/g, function (match) {
+                        return symbolMap[match];
+                    }
+                );
+            },
+            week: {
+                dow: 1, // Monday is the first day of the week.
+                doy: 4 // The week that contains Jan 4th is the first week of the year.
             }
-        },
-        calendar: {
-            sameDay: '[ថ្ងៃនេះ ម៉ោង] LT',
-            nextDay: '[ស្អែក ម៉ោង] LT',
-            nextWeek: 'dddd [ម៉ោង] LT',
-            lastDay: '[ម្សិលមិញ ម៉ោង] LT',
-            lastWeek: 'dddd [សប្តាហ៍មុន] [ម៉ោង] LT',
-            sameElse: 'L'
-        },
-        relativeTime: {
-            future: '%sទៀត',
-            past: '%sមុន',
-            s: 'ប៉ុន្មានវិនាទី',
-            ss: '%d វិនាទី',
-            m: 'មួយនាទី',
-            mm: '%d នាទី',
-            h: 'មួយម៉ោង',
-            hh: '%d ម៉ោង',
-            d: 'មួយថ្ងៃ',
-            dd: '%d ថ្ងៃ',
-            M: 'មួយខែ',
-            MM: '%d ខែ',
-            y: 'មួយឆ្នាំ',
-            yy: '%d ឆ្នាំ'
-        },
-        dayOfMonthOrdinalParse : /ទី\d{1,2}/,
-        ordinal : 'ទី%d',
-        preparse: function (string) {
-            return string.replace(/[១២៣៤៥៦៧៨៩០]/g, function (match) {
-                return numberMap[match];
-            });
-        },
-        postformat: function (string) {
-            return string.replace(/\d/g, function (match) {
-                return symbolMap[match];
-            });
-        },
-        week: {
-            dow: 1, // Monday is the first day of the week.
-            doy: 4 // The week that contains Jan 4th is the first week of the year.
         }
-    });
+    );
 
     return km;
 

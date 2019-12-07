@@ -24,7 +24,8 @@ class GroupController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     
-    public function getGroups(){
+    public function getGroups()
+    {
         $group = new Groups();
         return $group->fetchGroups();
     }

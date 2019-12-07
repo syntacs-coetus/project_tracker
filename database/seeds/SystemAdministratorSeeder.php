@@ -11,12 +11,14 @@ class SystemAdministratorSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_accounts')->insert([
+        DB::table('user_accounts')->insert(
+            [
             'user_name'           => 'AtraXaz',
             'user_email'          => 'syntacs.2019@gmail.com',
             'user_pass'           => make::hash('ShaneTacs2018'),
             'user_administrator'  => 1,
             'user_admin_override' => 1
-        ]);
+            ]
+        );
     }
 }

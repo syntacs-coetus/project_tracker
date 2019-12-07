@@ -1,5 +1,4 @@
 /**
- *
  *   *  Backtick quotes are used for <code></code> spans.
  *
  *   *  You can use multiple backticks as the delimiters if you want to
@@ -23,26 +22,29 @@
  *
  *         ... type <code>`bar`</code> ...
  */
-showdown.subParser('codeSpans', function (text, options, globals) {
-  'use strict';
+showdown.subParser(
+    'codeSpans', function (text, options, globals) {
+        'use strict';
 
-  text = globals.converter._dispatch('codeSpans.before', text, options, globals);
+        text = globals.converter._dispatch('codeSpans.before', text, options, globals);
 
-  if (typeof text === 'undefined') {
-    text = '';
-  }
-  text = text.replace(/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm,
-    function (wholeMatch, m1, m2, m3) {
-      var c = m3;
-      c = c.replace(/^([ \t]*)/g, '');	// leading whitespace
-      c = c.replace(/[ \t]*$/g, '');	// trailing whitespace
-      c = showdown.subParser('encodeCode')(c, options, globals);
-      c = m1 + '<code>' + c + '</code>';
-      c = showdown.subParser('hashHTMLSpans')(c, options, globals);
-      return c;
+        if (typeof text === 'undefined') {
+            text = '';
+        }
+        text = text.replace(
+            /(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm,
+            function (wholeMatch, m1, m2, m3) {
+                var c = m3;
+                c = c.replace(/^([ \t]*)/g, '');    // leading whitespace
+                c = c.replace(/[ \t]*$/g, '');    // trailing whitespace
+                c = showdown.subParser('encodeCode')(c, options, globals);
+                c = m1 + '<code>' + c + '</code>';
+                c = showdown.subParser('hashHTMLSpans')(c, options, globals);
+                return c;
+            }
+        );
+
+        text = globals.converter._dispatch('codeSpans.after', text, options, globals);
+        return text;
     }
-  );
-
-  text = globals.converter._dispatch('codeSpans.after', text, options, globals);
-  return text;
-});
+);

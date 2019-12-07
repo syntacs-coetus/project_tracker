@@ -13,25 +13,29 @@ class CreateIcVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ic_votes', function (Blueprint $table) {
-            $table->bigIncrements('icv_id');
-            $table->boolean('positive_vote')->default(1);
-            $table->Integer('voter')->unsigned();
-            $table->bigInteger('ic_id')->unsigned();
-            $table->timestamp('date_voted')->useCurrent();
-        });
+        Schema::create(
+            'ic_votes', function (Blueprint $table) {
+                $table->bigIncrements('icv_id');
+                $table->boolean('positive_vote')->default(1);
+                $table->Integer('voter')->unsigned();
+                $table->bigInteger('ic_id')->unsigned();
+                $table->timestamp('date_voted')->useCurrent();
+            }
+        );
 
-        Schema::table('ic_votes', function (Blueprint $table){
-            $table->foreign('voter')
-            ->references('user_id')
-            ->on('user_accounts')
-            ->onUpdate('cascade')->onDelete('restrict');
+        Schema::table(
+            'ic_votes', function (Blueprint $table) {
+                $table->foreign('voter')
+                    ->references('user_id')
+                    ->on('user_accounts')
+                    ->onUpdate('cascade')->onDelete('restrict');
 
-            $table->foreign('ic_id')
-            ->references('ic_id')
-            ->on('issue_comments')
-            ->onUpdate('cascade')->onDelete('restrict');
-        });
+                $table->foreign('ic_id')
+                    ->references('ic_id')
+                    ->on('issue_comments')
+                    ->onUpdate('cascade')->onDelete('restrict');
+            }
+        );
     }
 
     /**

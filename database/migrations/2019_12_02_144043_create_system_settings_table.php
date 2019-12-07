@@ -13,16 +13,18 @@ class CreateSystemSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('system_settings', function (Blueprint $table) {
-            $table->string('system_company')->unique();
-            $table->string('system_address')->nullable();
-            $table->tinyInteger('system_administrators')->default(2);
-            $table->tinyInteger('system_owneroverriders')->default(1);
-            $table->string('system_mobile')->nullable();
-            $table->string('system_phone')->nullable();
-            $table->string('system_email')->nullable();
-            $table->string('system_supportemail')->nullable();
-        });
+        Schema::create(
+            'system_settings', function (Blueprint $table) {
+                $table->string('system_company')->unique();
+                $table->string('system_address')->nullable();
+                $table->tinyInteger('system_administrators')->default(2);
+                $table->tinyInteger('system_owneroverriders')->default(1);
+                $table->string('system_mobile')->nullable();
+                $table->string('system_phone')->nullable();
+                $table->string('system_email')->nullable();
+                $table->string('system_supportemail')->nullable();
+            }
+        );
     }
 
     /**

@@ -2,7 +2,8 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
     (global = global || self, (global.FullCalendarLocales = global.FullCalendarLocales || {}, global.FullCalendarLocales.lb = factory()));
-}(this, function () { 'use strict';
+}(this, function () {
+    'use strict';
 
     var lb = {
         code: "lb",

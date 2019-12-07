@@ -6,7 +6,7 @@
 * Version: 4.0.9
 */
 
-(function(factory) {
+(function (factory) {
     if (typeof define === "function" && define.amd) {
         define([ "jquery" ], factory);
     } else if (typeof exports === "object") {
@@ -14,6 +14,8 @@
     } else {
         window.dependencyLib = factory(jQuery);
     }
-})(function($) {
-    return $;
-});
+})(
+    function ($) {
+        return $;
+    }
+);

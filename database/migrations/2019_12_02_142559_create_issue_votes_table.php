@@ -13,25 +13,29 @@ class CreateIssueVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('issue_votes', function (Blueprint $table) {
-            $table->bigIncrements('vote_id');
-            $table->boolean('positive_vote')->default(1);
-            $table->Integer('voter')->unsigned();
-            $table->Integer('issue_id')->unsigned();
-            $table->timestamp('date_voted')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-        });
+        Schema::create(
+            'issue_votes', function (Blueprint $table) {
+                $table->bigIncrements('vote_id');
+                $table->boolean('positive_vote')->default(1);
+                $table->Integer('voter')->unsigned();
+                $table->Integer('issue_id')->unsigned();
+                $table->timestamp('date_voted')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            }
+        );
 
-        Schema::table('issue_votes', function (Blueprint $table){
-            $table->foreign('voter')
-            ->references('user_id')
-            ->on('user_accounts')
-            ->onUpdate('cascade')->onDelete('restrict');
+        Schema::table(
+            'issue_votes', function (Blueprint $table) {
+                $table->foreign('voter')
+                    ->references('user_id')
+                    ->on('user_accounts')
+                    ->onUpdate('cascade')->onDelete('restrict');
 
-            $table->foreign('issue_id')
-            ->references('issue_id')
-            ->on('project_issues')
-            ->onUpdate('cascade')->onDelete('restrict');
-        });
+                $table->foreign('issue_id')
+                    ->references('issue_id')
+                    ->on('project_issues')
+                    ->onUpdate('cascade')->onDelete('restrict');
+            }
+        );
     }
 
     /**

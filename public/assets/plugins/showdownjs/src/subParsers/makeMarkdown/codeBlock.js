@@ -1,7 +1,9 @@
-showdown.subParser('makeMarkdown.codeBlock', function (node, globals) {
-  'use strict';
+showdown.subParser(
+    'makeMarkdown.codeBlock', function (node, globals) {
+        'use strict';
 
-  var lang = node.getAttribute('language'),
-      num  = node.getAttribute('precodenum');
-  return '```' + lang + '\n' + globals.preList[num] + '\n```';
-});
+        var lang = node.getAttribute('language'),
+        num  = node.getAttribute('precodenum');
+        return '```' + lang + '\n' + globals.preList[num] + '\n```';
+    }
+);

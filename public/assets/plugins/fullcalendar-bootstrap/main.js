@@ -8,7 +8,8 @@ Docs & License: https://fullcalendar.io/
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@fullcalendar/core')) :
     typeof define === 'function' && define.amd ? define(['exports', '@fullcalendar/core'], factory) :
     (global = global || self, factory(global.FullCalendarBootstrap = {}, global.FullCalendar));
-}(this, function (exports, core) { 'use strict';
+}(this, function (exports, core) {
+    'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -26,26 +27,36 @@ Docs & License: https://fullcalendar.io/
     ***************************************************************************** */
     /* global Reflect, Promise */
 
-    var extendStatics = function(d, b) {
+    var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            ({ __proto__: [] } instanceof Array && function (d, b) {
+                d.__proto__ = b; }) ||
+            function (d, b) {
+                for (var p in b) { if (b.hasOwnProperty(p)) { d[p] = b[p];
+                }
+                } };
         return extendStatics(d, b);
     };
 
-    function __extends(d, b) {
+    function __extends(d, b)
+    {
         extendStatics(d, b);
-        function __() { this.constructor = d; }
+        function __()
+        {
+            this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     }
 
-    var BootstrapTheme = /** @class */ (function (_super) {
+    var BootstrapTheme = /**
+ * @class 
+*/ (function (_super) {
         __extends(BootstrapTheme, _super);
-        function BootstrapTheme() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
+    function BootstrapTheme()
+    {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
         return BootstrapTheme;
-    }(core.Theme));
+}(core.Theme));
     BootstrapTheme.prototype.classes = {
         widget: 'fc-bootstrap',
         tableGrid: 'table-bordered',
@@ -77,11 +88,13 @@ Docs & License: https://fullcalendar.io/
     BootstrapTheme.prototype.iconOverrideOption = 'bootstrapFontAwesome';
     BootstrapTheme.prototype.iconOverrideCustomButtonOption = 'bootstrapFontAwesome';
     BootstrapTheme.prototype.iconOverridePrefix = 'fa-';
-    var main = core.createPlugin({
-        themeClasses: {
-            bootstrap: BootstrapTheme
+    var main = core.createPlugin(
+        {
+            themeClasses: {
+                bootstrap: BootstrapTheme
+            }
         }
-    });
+    );
 
     exports.BootstrapTheme = BootstrapTheme;
     exports.default = main;

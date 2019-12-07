@@ -7,7 +7,7 @@
  */
 
 (function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
+    if (typeof define === 'function' && define.amd ) {
         // AMD. Register as an anonymous module.
         define(['jquery'], factory);
     } else if (typeof exports === 'object') {
@@ -25,7 +25,7 @@
         slice  = Array.prototype.slice,
         nullLowestDeltaTimeout, lowestDelta;
 
-    if ( $.event.fixHooks ) {
+    if ($.event.fixHooks ) {
         for ( var i = toFix.length; i; ) {
             $.event.fixHooks[ toFix[--i] ] = $.event.mouseHooks;
         }
@@ -34,10 +34,10 @@
     var special = $.event.special.mousewheel = {
         version: '3.1.12',
 
-        setup: function() {
-            if ( this.addEventListener ) {
+        setup: function () {
+            if (this.addEventListener ) {
                 for ( var i = toBind.length; i; ) {
-                    this.addEventListener( toBind[--i], handler, false );
+                    this.addEventListener(toBind[--i], handler, false);
                 }
             } else {
                 this.onmousewheel = handler;
@@ -47,10 +47,10 @@
             $.data(this, 'mousewheel-page-height', special.getPageHeight(this));
         },
 
-        teardown: function() {
-            if ( this.removeEventListener ) {
+        teardown: function () {
+            if (this.removeEventListener ) {
                 for ( var i = toBind.length; i; ) {
-                    this.removeEventListener( toBind[--i], handler, false );
+                    this.removeEventListener(toBind[--i], handler, false);
                 }
             } else {
                 this.onmousewheel = null;
@@ -60,7 +60,7 @@
             $.removeData(this, 'mousewheel-page-height');
         },
 
-        getLineHeight: function(elem) {
+        getLineHeight: function (elem) {
             var $elem = $(elem),
                 $parent = $elem['offsetParent' in $.fn ? 'offsetParent' : 'parent']();
             if (!$parent.length) {
@@ -69,7 +69,7 @@
             return parseInt($parent.css('fontSize'), 10) || parseInt($elem.css('fontSize'), 10) || 16;
         },
 
-        getPageHeight: function(elem) {
+        getPageHeight: function (elem) {
             return $(elem).height();
         },
 
@@ -79,18 +79,21 @@
         }
     };
 
-    $.fn.extend({
-        mousewheel: function(fn) {
-            return fn ? this.bind('mousewheel', fn) : this.trigger('mousewheel');
-        },
+    $.fn.extend(
+        {
+            mousewheel: function (fn) {
+                return fn ? this.bind('mousewheel', fn) : this.trigger('mousewheel');
+            },
 
-        unmousewheel: function(fn) {
-            return this.unbind('mousewheel', fn);
+            unmousewheel: function (fn) {
+                return this.unbind('mousewheel', fn);
+            }
         }
-    });
+    );
 
 
-    function handler(event) {
+    function handler(event)
+    {
         var orgEvent   = event || window.event,
             args       = slice.call(arguments, 1),
             delta      = 0,
@@ -103,13 +106,13 @@
         event.type = 'mousewheel';
 
         // Old school scrollwheel delta
-        if ( 'detail'      in orgEvent ) { deltaY = orgEvent.detail * -1;      }
-        if ( 'wheelDelta'  in orgEvent ) { deltaY = orgEvent.wheelDelta;       }
-        if ( 'wheelDeltaY' in orgEvent ) { deltaY = orgEvent.wheelDeltaY;      }
-        if ( 'wheelDeltaX' in orgEvent ) { deltaX = orgEvent.wheelDeltaX * -1; }
+        if ('detail'      in orgEvent ) { deltaY = orgEvent.detail * -1;      }
+        if ('wheelDelta'  in orgEvent ) { deltaY = orgEvent.wheelDelta;       }
+        if ('wheelDeltaY' in orgEvent ) { deltaY = orgEvent.wheelDeltaY;      }
+        if ('wheelDeltaX' in orgEvent ) { deltaX = orgEvent.wheelDeltaX * -1; }
 
         // Firefox < 17 horizontal scrolling related to DOMMouseScroll event
-        if ( 'axis' in orgEvent && orgEvent.axis === orgEvent.HORIZONTAL_AXIS ) {
+        if ('axis' in orgEvent && orgEvent.axis === orgEvent.HORIZONTAL_AXIS ) {
             deltaX = deltaY * -1;
             deltaY = 0;
         }
@@ -118,29 +121,29 @@
         delta = deltaY === 0 ? deltaX : deltaY;
 
         // New school wheel delta (wheel event)
-        if ( 'deltaY' in orgEvent ) {
+        if ('deltaY' in orgEvent ) {
             deltaY = orgEvent.deltaY * -1;
             delta  = deltaY;
         }
-        if ( 'deltaX' in orgEvent ) {
+        if ('deltaX' in orgEvent ) {
             deltaX = orgEvent.deltaX;
-            if ( deltaY === 0 ) { delta  = deltaX * -1; }
+            if (deltaY === 0 ) { delta  = deltaX * -1; }
         }
 
         // No change actually happened, no reason to go any further
-        if ( deltaY === 0 && deltaX === 0 ) { return; }
+        if (deltaY === 0 && deltaX === 0 ) { return; }
 
         // Need to convert lines and pages to pixels if we aren't already in pixels
         // There are three delta modes:
         //   * deltaMode 0 is by pixels, nothing to do
         //   * deltaMode 1 is by lines
         //   * deltaMode 2 is by pages
-        if ( orgEvent.deltaMode === 1 ) {
+        if (orgEvent.deltaMode === 1 ) {
             var lineHeight = $.data(this, 'mousewheel-line-height');
             delta  *= lineHeight;
             deltaY *= lineHeight;
             deltaX *= lineHeight;
-        } else if ( orgEvent.deltaMode === 2 ) {
+        } else if (orgEvent.deltaMode === 2 ) {
             var pageHeight = $.data(this, 'mousewheel-page-height');
             delta  *= pageHeight;
             deltaY *= pageHeight;
@@ -148,19 +151,19 @@
         }
 
         // Store lowest absolute delta to normalize the delta values
-        absDelta = Math.max( Math.abs(deltaY), Math.abs(deltaX) );
+        absDelta = Math.max(Math.abs(deltaY), Math.abs(deltaX));
 
-        if ( !lowestDelta || absDelta < lowestDelta ) {
+        if (!lowestDelta || absDelta < lowestDelta ) {
             lowestDelta = absDelta;
 
             // Adjust older deltas if necessary
-            if ( shouldAdjustOldDeltas(orgEvent, absDelta) ) {
+            if (shouldAdjustOldDeltas(orgEvent, absDelta) ) {
                 lowestDelta /= 40;
             }
         }
 
         // Adjust older deltas if necessary
-        if ( shouldAdjustOldDeltas(orgEvent, absDelta) ) {
+        if (shouldAdjustOldDeltas(orgEvent, absDelta) ) {
             // Divide all the things by 40!
             delta  /= 40;
             deltaX /= 40;
@@ -173,7 +176,7 @@
         deltaY = Math[ deltaY >= 1 ? 'floor' : 'ceil' ](deltaY / lowestDelta);
 
         // Normalise offsetX and offsetY properties
-        if ( special.settings.normalizeOffset && this.getBoundingClientRect ) {
+        if (special.settings.normalizeOffset && this.getBoundingClientRect ) {
             var boundingRect = this.getBoundingClientRect();
             offsetX = event.clientX - boundingRect.left;
             offsetY = event.clientY - boundingRect.top;
@@ -203,11 +206,13 @@
         return ($.event.dispatch || $.event.handle).apply(this, args);
     }
 
-    function nullLowestDelta() {
+    function nullLowestDelta()
+    {
         lowestDelta = null;
     }
 
-    function shouldAdjustOldDeltas(orgEvent, absDelta) {
+    function shouldAdjustOldDeltas(orgEvent, absDelta)
+    {
         // If this is an older event and the delta is divisable by 120,
         // then we are assuming that the browser is treating this as an
         // older mouse wheel event and that we should divide the deltas

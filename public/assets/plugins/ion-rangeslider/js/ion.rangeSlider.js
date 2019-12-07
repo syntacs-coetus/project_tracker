@@ -10,11 +10,13 @@
 // http://ionden.com/a/plugins/licence-en.html
 // =====================================================================================================================
 
-;(function(factory) {
+;(function (factory) {
     if (!jQuery && typeof define === "function" && define.amd) {
-        define(["jquery"], function (jQuery) {
-            return factory(jQuery, document, window, navigator);
-        });
+        define(
+            ["jquery"], function (jQuery) {
+                return factory(jQuery, document, window, navigator);
+            }
+        );
     } else if (!jQuery && typeof exports === "object") {
         factory(require("jquery"), document, window, navigator);
     } else {
@@ -44,7 +46,8 @@
         return false;
     } ());
     if (!Function.prototype.bind) {
-        Function.prototype.bind = function bind(that) {
+        Function.prototype.bind = function bind(that)
+        {
 
             var target = this;
             var slice = [].slice;
@@ -58,7 +61,7 @@
 
                     if (this instanceof bound) {
 
-                        var F = function(){};
+                        var F = function (){};
                         F.prototype = target.prototype;
                         var self = new F();
 
@@ -86,7 +89,7 @@
         };
     }
     if (!Array.prototype.indexOf) {
-        Array.prototype.indexOf = function(searchElement, fromIndex) {
+        Array.prototype.indexOf = function (searchElement, fromIndex) {
             var k;
             if (this == null) {
                 throw new TypeError('"this" is null or not defined');
@@ -150,9 +153,9 @@
     /**
      * Main plugin constructor
      *
-     * @param input {Object} link to base input element
-     * @param options {Object} slider config
-     * @param plugin_count {Number}
+     * @param       input {Object} link to base input element
+     * @param       options {Object} slider config
+     * @param       plugin_count {Number}
      * @constructor
      */
     var IonRangeSlider = function (input, options, plugin_count) {
@@ -596,27 +599,27 @@
          */
         changeLevel: function (target) {
             switch (target) {
-                case "single":
-                    this.coords.p_gap = this.toFixed(this.coords.p_pointer - this.coords.p_single_fake);
-                    this.$cache.s_single.addClass("state_hover");
+            case "single":
+                this.coords.p_gap = this.toFixed(this.coords.p_pointer - this.coords.p_single_fake);
+                this.$cache.s_single.addClass("state_hover");
                     break;
-                case "from":
-                    this.coords.p_gap = this.toFixed(this.coords.p_pointer - this.coords.p_from_fake);
-                    this.$cache.s_from.addClass("state_hover");
-                    this.$cache.s_from.addClass("type_last");
-                    this.$cache.s_to.removeClass("type_last");
+            case "from":
+                this.coords.p_gap = this.toFixed(this.coords.p_pointer - this.coords.p_from_fake);
+                this.$cache.s_from.addClass("state_hover");
+                this.$cache.s_from.addClass("type_last");
+                this.$cache.s_to.removeClass("type_last");
                     break;
-                case "to":
-                    this.coords.p_gap = this.toFixed(this.coords.p_pointer - this.coords.p_to_fake);
-                    this.$cache.s_to.addClass("state_hover");
-                    this.$cache.s_to.addClass("type_last");
-                    this.$cache.s_from.removeClass("type_last");
+            case "to":
+                this.coords.p_gap = this.toFixed(this.coords.p_pointer - this.coords.p_to_fake);
+                this.$cache.s_to.addClass("state_hover");
+                this.$cache.s_to.addClass("type_last");
+                this.$cache.s_from.removeClass("type_last");
                     break;
-                case "both":
-                    this.coords.p_gap_left = this.toFixed(this.coords.p_pointer - this.coords.p_from_fake);
-                    this.coords.p_gap_right = this.toFixed(this.coords.p_to_fake - this.coords.p_pointer);
-                    this.$cache.s_to.removeClass("type_last");
-                    this.$cache.s_from.removeClass("type_last");
+            case "both":
+                this.coords.p_gap_left = this.toFixed(this.coords.p_pointer - this.coords.p_from_fake);
+                this.coords.p_gap_right = this.toFixed(this.coords.p_to_fake - this.coords.p_pointer);
+                this.$cache.s_to.removeClass("type_last");
+                this.$cache.s_from.removeClass("type_last");
                     break;
             }
         },
@@ -883,8 +886,8 @@
         /**
          * Keyborard controls for focused slider
          *
-         * @param target {String}
-         * @param e {Object} event object
+         * @param   target {String}
+         * @param   e {Object} event object
          * @returns {boolean|undefined}
          */
         key: function (target, e) {
@@ -893,20 +896,20 @@
             }
 
             switch (e.which) {
-                case 83: // W
-                case 65: // A
-                case 40: // DOWN
-                case 37: // LEFT
-                    e.preventDefault();
-                    this.moveByKey(false);
+            case 83: // W
+            case 65: // A
+            case 40: // DOWN
+            case 37: // LEFT
+                e.preventDefault();
+                this.moveByKey(false);
                     break;
 
-                case 87: // S
-                case 68: // D
-                case 38: // UP
-                case 39: // RIGHT
-                    e.preventDefault();
-                    this.moveByKey(true);
+            case 87: // S
+            case 68: // D
+            case 38: // UP
+            case 39: // RIGHT
+                e.preventDefault();
+                this.moveByKey(true);
                     break;
             }
 
@@ -1040,127 +1043,127 @@
             }
 
             switch (this.target) {
-                case "base":
-                    var w = (this.options.max - this.options.min) / 100,
-                        f = (this.result.from - this.options.min) / w,
-                        t = (this.result.to - this.options.min) / w;
+            case "base":
+                var w = (this.options.max - this.options.min) / 100,
+                    f = (this.result.from - this.options.min) / w,
+                    t = (this.result.to - this.options.min) / w;
 
-                    this.coords.p_single_real = this.toFixed(f);
-                    this.coords.p_from_real = this.toFixed(f);
-                    this.coords.p_to_real = this.toFixed(t);
+                this.coords.p_single_real = this.toFixed(f);
+                this.coords.p_from_real = this.toFixed(f);
+                this.coords.p_to_real = this.toFixed(t);
 
-                    this.coords.p_single_real = this.checkDiapason(this.coords.p_single_real, this.options.from_min, this.options.from_max);
-                    this.coords.p_from_real = this.checkDiapason(this.coords.p_from_real, this.options.from_min, this.options.from_max);
-                    this.coords.p_to_real = this.checkDiapason(this.coords.p_to_real, this.options.to_min, this.options.to_max);
+                this.coords.p_single_real = this.checkDiapason(this.coords.p_single_real, this.options.from_min, this.options.from_max);
+                this.coords.p_from_real = this.checkDiapason(this.coords.p_from_real, this.options.from_min, this.options.from_max);
+                this.coords.p_to_real = this.checkDiapason(this.coords.p_to_real, this.options.to_min, this.options.to_max);
 
-                    this.coords.p_single_fake = this.convertToFakePercent(this.coords.p_single_real);
-                    this.coords.p_from_fake = this.convertToFakePercent(this.coords.p_from_real);
-                    this.coords.p_to_fake = this.convertToFakePercent(this.coords.p_to_real);
+                this.coords.p_single_fake = this.convertToFakePercent(this.coords.p_single_real);
+                this.coords.p_from_fake = this.convertToFakePercent(this.coords.p_from_real);
+                this.coords.p_to_fake = this.convertToFakePercent(this.coords.p_to_real);
 
-                    this.target = null;
-
-                    break;
-
-                case "single":
-                    if (this.options.from_fixed) {
-                        break;
-                    }
-
-                    this.coords.p_single_real = this.convertToRealPercent(handle_x);
-                    this.coords.p_single_real = this.calcWithStep(this.coords.p_single_real);
-                    this.coords.p_single_real = this.checkDiapason(this.coords.p_single_real, this.options.from_min, this.options.from_max);
-
-                    this.coords.p_single_fake = this.convertToFakePercent(this.coords.p_single_real);
+                this.target = null;
 
                     break;
 
-                case "from":
-                    if (this.options.from_fixed) {
-                        break;
-                    }
+            case "single":
+                if (this.options.from_fixed) {
+                    break;
+                }
 
-                    this.coords.p_from_real = this.convertToRealPercent(handle_x);
-                    this.coords.p_from_real = this.calcWithStep(this.coords.p_from_real);
-                    if (this.coords.p_from_real > this.coords.p_to_real) {
-                        this.coords.p_from_real = this.coords.p_to_real;
-                    }
-                    this.coords.p_from_real = this.checkDiapason(this.coords.p_from_real, this.options.from_min, this.options.from_max);
-                    this.coords.p_from_real = this.checkMinInterval(this.coords.p_from_real, this.coords.p_to_real, "from");
-                    this.coords.p_from_real = this.checkMaxInterval(this.coords.p_from_real, this.coords.p_to_real, "from");
+                this.coords.p_single_real = this.convertToRealPercent(handle_x);
+                this.coords.p_single_real = this.calcWithStep(this.coords.p_single_real);
+                this.coords.p_single_real = this.checkDiapason(this.coords.p_single_real, this.options.from_min, this.options.from_max);
 
-                    this.coords.p_from_fake = this.convertToFakePercent(this.coords.p_from_real);
+                this.coords.p_single_fake = this.convertToFakePercent(this.coords.p_single_real);
 
                     break;
 
-                case "to":
-                    if (this.options.to_fixed) {
-                        break;
-                    }
+            case "from":
+                if (this.options.from_fixed) {
+                    break;
+                }
 
-                    this.coords.p_to_real = this.convertToRealPercent(handle_x);
-                    this.coords.p_to_real = this.calcWithStep(this.coords.p_to_real);
-                    if (this.coords.p_to_real < this.coords.p_from_real) {
-                        this.coords.p_to_real = this.coords.p_from_real;
-                    }
-                    this.coords.p_to_real = this.checkDiapason(this.coords.p_to_real, this.options.to_min, this.options.to_max);
-                    this.coords.p_to_real = this.checkMinInterval(this.coords.p_to_real, this.coords.p_from_real, "to");
-                    this.coords.p_to_real = this.checkMaxInterval(this.coords.p_to_real, this.coords.p_from_real, "to");
+                this.coords.p_from_real = this.convertToRealPercent(handle_x);
+                this.coords.p_from_real = this.calcWithStep(this.coords.p_from_real);
+                if (this.coords.p_from_real > this.coords.p_to_real) {
+                    this.coords.p_from_real = this.coords.p_to_real;
+                }
+                this.coords.p_from_real = this.checkDiapason(this.coords.p_from_real, this.options.from_min, this.options.from_max);
+                this.coords.p_from_real = this.checkMinInterval(this.coords.p_from_real, this.coords.p_to_real, "from");
+                this.coords.p_from_real = this.checkMaxInterval(this.coords.p_from_real, this.coords.p_to_real, "from");
 
-                    this.coords.p_to_fake = this.convertToFakePercent(this.coords.p_to_real);
+                this.coords.p_from_fake = this.convertToFakePercent(this.coords.p_from_real);
 
                     break;
 
-                case "both":
-                    if (this.options.from_fixed || this.options.to_fixed) {
-                        break;
-                    }
+            case "to":
+                if (this.options.to_fixed) {
+                    break;
+                }
 
-                    handle_x = this.toFixed(handle_x + (this.coords.p_handle * 0.001));
+                this.coords.p_to_real = this.convertToRealPercent(handle_x);
+                this.coords.p_to_real = this.calcWithStep(this.coords.p_to_real);
+                if (this.coords.p_to_real < this.coords.p_from_real) {
+                    this.coords.p_to_real = this.coords.p_from_real;
+                }
+                this.coords.p_to_real = this.checkDiapason(this.coords.p_to_real, this.options.to_min, this.options.to_max);
+                this.coords.p_to_real = this.checkMinInterval(this.coords.p_to_real, this.coords.p_from_real, "to");
+                this.coords.p_to_real = this.checkMaxInterval(this.coords.p_to_real, this.coords.p_from_real, "to");
 
-                    this.coords.p_from_real = this.convertToRealPercent(handle_x) - this.coords.p_gap_left;
-                    this.coords.p_from_real = this.calcWithStep(this.coords.p_from_real);
-                    this.coords.p_from_real = this.checkDiapason(this.coords.p_from_real, this.options.from_min, this.options.from_max);
-                    this.coords.p_from_real = this.checkMinInterval(this.coords.p_from_real, this.coords.p_to_real, "from");
-                    this.coords.p_from_fake = this.convertToFakePercent(this.coords.p_from_real);
-
-                    this.coords.p_to_real = this.convertToRealPercent(handle_x) + this.coords.p_gap_right;
-                    this.coords.p_to_real = this.calcWithStep(this.coords.p_to_real);
-                    this.coords.p_to_real = this.checkDiapason(this.coords.p_to_real, this.options.to_min, this.options.to_max);
-                    this.coords.p_to_real = this.checkMinInterval(this.coords.p_to_real, this.coords.p_from_real, "to");
-                    this.coords.p_to_fake = this.convertToFakePercent(this.coords.p_to_real);
+                this.coords.p_to_fake = this.convertToFakePercent(this.coords.p_to_real);
 
                     break;
 
-                case "both_one":
-                    if (this.options.from_fixed || this.options.to_fixed) {
-                        break;
-                    }
+            case "both":
+                if (this.options.from_fixed || this.options.to_fixed) {
+                    break;
+                }
 
-                    var real_x = this.convertToRealPercent(handle_x),
-                        from = this.result.from_percent,
-                        to = this.result.to_percent,
-                        full = to - from,
-                        half = full / 2,
-                        new_from = real_x - half,
-                        new_to = real_x + half;
+                handle_x = this.toFixed(handle_x + (this.coords.p_handle * 0.001));
 
-                    if (new_from < 0) {
-                        new_from = 0;
-                        new_to = new_from + full;
-                    }
+                this.coords.p_from_real = this.convertToRealPercent(handle_x) - this.coords.p_gap_left;
+                this.coords.p_from_real = this.calcWithStep(this.coords.p_from_real);
+                this.coords.p_from_real = this.checkDiapason(this.coords.p_from_real, this.options.from_min, this.options.from_max);
+                this.coords.p_from_real = this.checkMinInterval(this.coords.p_from_real, this.coords.p_to_real, "from");
+                this.coords.p_from_fake = this.convertToFakePercent(this.coords.p_from_real);
 
-                    if (new_to > 100) {
-                        new_to = 100;
-                        new_from = new_to - full;
-                    }
+                this.coords.p_to_real = this.convertToRealPercent(handle_x) + this.coords.p_gap_right;
+                this.coords.p_to_real = this.calcWithStep(this.coords.p_to_real);
+                this.coords.p_to_real = this.checkDiapason(this.coords.p_to_real, this.options.to_min, this.options.to_max);
+                this.coords.p_to_real = this.checkMinInterval(this.coords.p_to_real, this.coords.p_from_real, "to");
+                this.coords.p_to_fake = this.convertToFakePercent(this.coords.p_to_real);
 
-                    this.coords.p_from_real = this.calcWithStep(new_from);
-                    this.coords.p_from_real = this.checkDiapason(this.coords.p_from_real, this.options.from_min, this.options.from_max);
-                    this.coords.p_from_fake = this.convertToFakePercent(this.coords.p_from_real);
+                    break;
 
-                    this.coords.p_to_real = this.calcWithStep(new_to);
-                    this.coords.p_to_real = this.checkDiapason(this.coords.p_to_real, this.options.to_min, this.options.to_max);
-                    this.coords.p_to_fake = this.convertToFakePercent(this.coords.p_to_real);
+            case "both_one":
+                if (this.options.from_fixed || this.options.to_fixed) {
+                    break;
+                }
+
+                var real_x = this.convertToRealPercent(handle_x),
+                    from = this.result.from_percent,
+                    to = this.result.to_percent,
+                    full = to - from,
+                    half = full / 2,
+                    new_from = real_x - half,
+                    new_to = real_x + half;
+
+                if (new_from < 0) {
+                    new_from = 0;
+                    new_to = new_from + full;
+                }
+
+                if (new_to > 100) {
+                    new_to = 100;
+                    new_from = new_to - full;
+                }
+
+                this.coords.p_from_real = this.calcWithStep(new_from);
+                this.coords.p_from_real = this.checkDiapason(this.coords.p_from_real, this.options.from_min, this.options.from_max);
+                this.coords.p_from_fake = this.convertToFakePercent(this.coords.p_from_real);
+
+                this.coords.p_to_real = this.calcWithStep(new_to);
+                this.coords.p_to_real = this.checkDiapason(this.coords.p_to_real, this.options.to_min, this.options.to_max);
+                this.coords.p_to_fake = this.convertToFakePercent(this.coords.p_to_real);
 
                     break;
             }
@@ -1252,7 +1255,7 @@
         /**
          * Find closest handle to pointer click
          *
-         * @param real_x {Number}
+         * @param   real_x {Number}
          * @returns {String}
          */
         chooseHandle: function (real_x) {
@@ -1736,8 +1739,8 @@
         /**
          * Convert real value to percent
          *
-         * @param value {Number} X in real
-         * @param no_min {boolean=} don't use min value
+         * @param   value {Number} X in real
+         * @param   no_min {boolean=} don't use min value
          * @returns {Number} X in percent
          */
         convertToPercent: function (value, no_min) {
@@ -1764,7 +1767,7 @@
         /**
          * Convert percent to real values
          *
-         * @param percent {Number} X in percent
+         * @param   percent {Number} X in percent
          * @returns {Number} X in real
          */
         convertToValue: function (percent) {
@@ -1837,7 +1840,7 @@
         /**
          * Round percent value with step
          *
-         * @param percent {Number}
+         * @param   percent {Number}
          * @returns percent {Number} rounded
          */
         calcWithStep: function (percent) {
@@ -1978,18 +1981,28 @@
                 value,
                 i;
 
-            if (typeof o.min === "string") o.min = +o.min;
-            if (typeof o.max === "string") o.max = +o.max;
-            if (typeof o.from === "string") o.from = +o.from;
-            if (typeof o.to === "string") o.to = +o.to;
-            if (typeof o.step === "string") o.step = +o.step;
+            if (typeof o.min === "string") { o.min = +o.min;
+            }
+            if (typeof o.max === "string") { o.max = +o.max;
+            }
+            if (typeof o.from === "string") { o.from = +o.from;
+            }
+            if (typeof o.to === "string") { o.to = +o.to;
+            }
+            if (typeof o.step === "string") { o.step = +o.step;
+            }
 
-            if (typeof o.from_min === "string") o.from_min = +o.from_min;
-            if (typeof o.from_max === "string") o.from_max = +o.from_max;
-            if (typeof o.to_min === "string") o.to_min = +o.to_min;
-            if (typeof o.to_max === "string") o.to_max = +o.to_max;
+            if (typeof o.from_min === "string") { o.from_min = +o.from_min;
+            }
+            if (typeof o.from_max === "string") { o.from_max = +o.from_max;
+            }
+            if (typeof o.to_min === "string") { o.to_min = +o.to_min;
+            }
+            if (typeof o.to_max === "string") { o.to_max = +o.to_max;
+            }
 
-            if (typeof o.grid_num === "string") o.grid_num = +o.grid_num;
+            if (typeof o.grid_num === "string") { o.grid_num = +o.grid_num;
+            }
 
             if (o.max < o.min) {
                 o.max = o.min;
@@ -2027,30 +2040,40 @@
 
             if (o.type === "single") {
 
-                if (o.from < o.min) o.from = o.min;
-                if (o.from > o.max) o.from = o.max;
+                if (o.from < o.min) { o.from = o.min;
+                }
+                if (o.from > o.max) { o.from = o.max;
+                }
 
             } else {
 
-                if (o.from < o.min) o.from = o.min;
-                if (o.from > o.max) o.from = o.max;
+                if (o.from < o.min) { o.from = o.min;
+                }
+                if (o.from > o.max) { o.from = o.max;
+                }
 
-                if (o.to < o.min) o.to = o.min;
-                if (o.to > o.max) o.to = o.max;
+                if (o.to < o.min) { o.to = o.min;
+                }
+                if (o.to > o.max) { o.to = o.max;
+                }
 
                 if (this.update_check.from) {
 
                     if (this.update_check.from !== o.from) {
-                        if (o.from > o.to) o.from = o.to;
+                        if (o.from > o.to) { o.from = o.to;
+                        }
                     }
                     if (this.update_check.to !== o.to) {
-                        if (o.to < o.from) o.to = o.from;
+                        if (o.to < o.from) { o.to = o.from;
+                        }
                     }
 
                 }
 
-                if (o.from > o.to) o.from = o.to;
-                if (o.to < o.from) o.to = o.from;
+                if (o.from > o.to) { o.from = o.to;
+                }
+                if (o.to < o.from) { o.to = o.from;
+                }
 
             }
 
@@ -2198,7 +2221,8 @@
                 big_num = total / o.step;
             }
 
-            if (big_num > 50) big_num = 50;
+            if (big_num > 50) { big_num = 50;
+            }
             big_p = this.toFixed(100 / big_num);
 
             if (big_num > 4) {
@@ -2404,11 +2428,13 @@
     };
 
     $.fn.ionRangeSlider = function (options) {
-        return this.each(function() {
-            if (!$.data(this, "ionRangeSlider")) {
-                $.data(this, "ionRangeSlider", new IonRangeSlider(this, options, plugin_count++));
+        return this.each(
+            function () {
+                if (!$.data(this, "ionRangeSlider")) {
+                    $.data(this, "ionRangeSlider", new IonRangeSlider(this, options, plugin_count++));
+                }
             }
-        });
+        );
     };
 
 
@@ -2421,7 +2447,7 @@
 
     // MIT license
 
-    (function() {
+    (function () {
         var lastTime = 0;
         var vendors = ['ms', 'moz', 'webkit', 'o'];
         for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -2430,20 +2456,25 @@
                 || window[vendors[x]+'CancelRequestAnimationFrame'];
         }
 
-        if (!window.requestAnimationFrame)
-            window.requestAnimationFrame = function(callback, element) {
+        if (!window.requestAnimationFrame) {
+            window.requestAnimationFrame = function (callback, element) {
                 var currTime = new Date().getTime();
                 var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-                    timeToCall);
+                var id = window.setTimeout(
+                    function () {
+                        callback(currTime + timeToCall); },
+                    timeToCall
+                );
                 lastTime = currTime + timeToCall;
                 return id;
             };
+        }
 
-        if (!window.cancelAnimationFrame)
-            window.cancelAnimationFrame = function(id) {
+        if (!window.cancelAnimationFrame) {
+            window.cancelAnimationFrame = function (id) {
                 clearTimeout(id);
             };
+        }
     }());
 
 }));
