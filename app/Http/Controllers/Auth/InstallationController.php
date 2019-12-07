@@ -1,9 +1,26 @@
 <?php
-
+/**
+ * Installation Controller for System First Launch
+ * php version 7.2
+ * 
+ * @category Component
+ * @package  Laravel
+ * @author   AtraXaz <earltacs96@gmail.com>
+ * @license  www.syntacs.com/copyrighted_softwares/project_tracker SynTacs
+ * @link     www.syntacs.com 
+ */
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
-
+/**
+ * Installation Controller for System First Launch
+ * php version 7.2
+ * 
+ * @category Component
+ * @package  Laravel
+ * @author   AtraXaz <earltacs96@gmail.com>
+ * @license  www.syntacs.com/copyrighted_softwares/project_tracker SynTacs
+ * @link     www.syntacs.com 
+ */
 class InstallationController extends Controller
 {
     /*
@@ -33,7 +50,11 @@ class InstallationController extends Controller
     {
         // $this->middleware('auth');
     }
-
+    /**
+     * The index page for the controller
+     * 
+     * @return view
+     */
     public function index()
     {
         return view('auth.insta');
